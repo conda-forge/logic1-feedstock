@@ -9,6 +9,14 @@ Package license: GPL-2.0-or-later
 
 Summary: Interpreted first-order logic in Python
 
+Development: https://github.com/logic1-eu/logic1
+
+Documentation: https://docs.logic1.eu/
+
+First-order logic recursively builds terms from variables and a specified set of function symbols with specified arities, which includes constant symbols with arity zero. Next, atomic formulas are built from terms and a specified set of relation symbols with specified arities. Finally, first-order formulas are recursively built from atomic formulas and a fixed set of logical operators.
+
+Logic1 focuses on interpreted first-order logic, where the above-mentioned function and relation symbols have implicit semantics, which is not explicitly expressed via axioms within the logical framework. Typical applications include algebraic decision procedures and, more generally, quantifier elimination procedures, e.g., over the real numbers.
+
 Current build status
 ====================
 
@@ -144,4 +152,5 @@ Feedstock Maintainers
 =====================
 
 * [@lorenzleutgeb](https://github.com/lorenzleutgeb/)
+* [@thomas-sturm](https://github.com/thomas-sturm/)
 
