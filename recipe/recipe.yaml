@@ -1,5 +1,5 @@
 context:
-  version: 0.1.0
+  version: 0.2.0
   python_min: "3.11"
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/logic1-eu/logic1/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 7149ce98cc9381da14de26f871c00f14fef12d0b3e482bef4c555ccfe8cc558d
+  sha256: 7747551256376a3aff5d2ff23873241f9e96fcda61011453c595307627a894c9
 
 build:
   number: 0
