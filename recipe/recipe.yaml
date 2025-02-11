@@ -1,6 +1,7 @@
 context:
   version: 0.2.0
-  python_min: "3.11"
+  python_min: ">=3.11"
+  python_max: "<3.12"
 
 package:
   name: logic1
@@ -20,12 +21,12 @@ build:
 
 requirements:
   host:
-    - python ${{ python_min }}
+    - python ${{ python_min }},${{ python_max }}
     - pip
     - setuptools
     - setuptools_scm
   run:
-    - python >=${{ python_min }},<3.12
+    - python ${{ python_min }},${{ python_max }}
     - more-itertools
     - pyeda
     - sage
@@ -43,7 +44,7 @@ tests:
         - logic1/theories/Sets/test_qe.txt
     requirements:
       run:
-        - python ${{ python_min }}
+        - python ${{ python_min }},${{ python_max }}
 
 about:
   license: GPL-2.0-or-later
