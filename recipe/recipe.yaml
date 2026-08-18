@@ -1,7 +1,7 @@
 context:
-  version: 0.2.0
-  python_min: ">=3.11"
-  python_max: "<3.12"
+  version: 0.3.0
+  python_min: ">=3.14"
+  python_max: "<3.15"
 
 package:
   name: logic1
@@ -9,42 +9,42 @@ package:
 
 source:
   url: https://github.com/logic1-eu/logic1/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 7747551256376a3aff5d2ff23873241f9e96fcda61011453c595307627a894c9
+  sha256: 95f3a085ccaf56050daf14c3fc2ad20218ce3f783f46c55855eddbaa5f49a82a
 
 build:
   number: 0
-  noarch: python
   script:
-    env:
-      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
-    content: python -m pip install . -vv --no-deps --no-build-isolation
+    - export CFLAGS="${CFLAGS} -I${SP_DIR}/gmpy2"
+    - python -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
+  build:
+    - ${{ compiler('c') }}
   host:
-    - python ${{ python_min }},${{ python_max }}
+    - cython >=3.1.0
+    - gmpy2
     - pip
+    - python 3.14.* *_cp314
     - setuptools
     - setuptools_scm
   run:
-    - python ${{ python_min }},${{ python_max }}
+    - gmpy2
     - more-itertools
     - pyeda
+    - python-flint
     - sage
     - typing-extensions
 
 tests:
-  - python:
-      imports:
-        - logic1
-      pip_check: false
   - script:
+      - export DOT_SAGE="${PWD}/.sage"
+      - python -c "import logic1"
+  - script:
+      - export DOT_SAGE="${PWD}/.sage"
       - python -m doctest -o NORMALIZE_WHITESPACE logic1/theories/Sets/test_qe.txt
     files:
       source:
         - logic1/theories/Sets/test_qe.txt
-    requirements:
-      run:
-        - python ${{ python_min }},${{ python_max }}
 
 about:
   license: GPL-2.0-or-later
