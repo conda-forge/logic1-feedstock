@@ -21,8 +21,10 @@ build:
       - python -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler("c") }}
   host:
-    - ${{ compiler('c') }}
     - cython >=3.1.0
     - gmpy2
     - pip
