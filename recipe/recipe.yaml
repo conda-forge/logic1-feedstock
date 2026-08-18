@@ -13,15 +13,17 @@ source:
 
 build:
   number: 0
-  env:
-      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
   script:
-    - export CFLAGS="${CFLAGS} -I${SP_DIR}/gmpy2"
-    - python -m pip install . -vv --no-deps --no-build-isolation
+    env:
+      SETUPTOOLS_SCM_PRETEND_VERSION: ${{ version }}
+    content:
+      - export CFLAGS="${CFLAGS} -I${SP_DIR}/gmpy2"
+      - python -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
     - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
   host:
     - cython >=3.1.0
     - gmpy2
@@ -33,6 +35,7 @@ requirements:
     - gmpy2
     - more-itertools
     - pyeda
+    - python 3.14.* *_cp314
     - python-flint
     - sage
     - typing-extensions
