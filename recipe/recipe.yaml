@@ -12,7 +12,7 @@ source:
   sha256: 95f3a085ccaf56050daf14c3fc2ad20218ce3f783f46c55855eddbaa5f49a82a
 
 build:
-  number: 0
+  number: 1
   skip: win
   script:
     env:
@@ -25,6 +25,11 @@ requirements:
   build:
     - ${{ stdlib("c") }}
     - ${{ compiler("c") }}
+    - if: build_platform != host_platform
+      then:
+        - cross-python_${{ host_platform }}
+        - python
+        - cython >=3.1.0
   host:
     - cython >=3.1.0
     - gmpy2
